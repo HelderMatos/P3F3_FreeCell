@@ -163,6 +163,7 @@ public class FreeCell extends JFrame {
 
 	private void memorizarSituacaoJogo() {
 		// memorizar aqui a situação de jogo
+		repor.setEnabled(true);
 	}
 
 	private void reporSituacaoJogo() {
