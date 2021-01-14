@@ -214,13 +214,18 @@ public class FreeCell extends JFrame {
 	}
 	
 	private ArrayList<PontoRestauro> restauros = new ArrayList<PontoRestauro>();
+	private int undoIndex = 0;
 	
 	private void fezJogada() {
-		restauros.add(new PontoRestauro());
+		restauros.add(undoIndex, new PontoRestauro());
+		undoIndex++;
 	}
 	
 	private void fazerUndo() {
-		PontoRestauro ultimo = restauros.get(restauros.size() -1);
+		undoIndex--;
+		PontoRestauro ultimo = restauros.get(undoIndex);
+//		if(undoIndex = 0)
+//			desativarMenu();
 		ultimo.aplicarRestauro();
 		repaint();
 	}
