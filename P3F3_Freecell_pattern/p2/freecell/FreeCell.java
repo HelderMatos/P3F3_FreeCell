@@ -201,13 +201,25 @@ public class FreeCell extends JFrame {
 	}
 	
 	private class PontoRestauro{
-		private int click;
-		private ContentorCartas origens[];
-		private ContentorCartas destinos[];
-		private ContentorCartas aOrigem;
+		private int clickMem;
+		private ContentorCartas origensMem[];
+		private ContentorCartas destinosMem[];
+		private ContentorCartas aOrigemMem;
 		
-		void criarRestauro() {
+		void PontoRestauro() {
+			this.clickMem = FreeCell.this.click;
 			
+			destinosMem = new ContentorCartas[destinos.length];
+			for(int i = 0; i< destinos.length; i++)
+				destinosMem[i] = destinos[i].clone();
+			
+			origensMem = new ContentorCartas[origens.length];
+			for(int i = 0; i< origens.length; i++) {
+				origensMem[i] = destinosMem[i].clone();
+				if(origens[i] == aOrigem)
+					aOrigemMem = origensMem[i];
+			}
+			//aOrigemMem = aOrigem.clone();// mal
 		}
 		
 		void aplicarRestauro() {
