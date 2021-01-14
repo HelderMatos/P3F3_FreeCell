@@ -27,6 +27,8 @@ public class FreeCell extends JFrame {
 
 	private PontoRestauro ultimoPonto;
 
+	private JMenuItem undo;
+
 	public FreeCell( ){
 		setTitle( "Freecell" );
 		setSize( 680, 600 );
@@ -200,12 +202,14 @@ public class FreeCell extends JFrame {
 		});
 		menu.add( repor );
 		
-		JMenuItem undo = new JMenuItem("Desefazer ultima Jogada");
+		undo = new JMenuItem("Desefazer ultima Jogada");
+		undo.setEnabled(false);
 		undo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				fazerUndo();	
 			}
 		});
+		
 		menu.add( undo );
 		
 		bar.add( menu );
@@ -219,17 +223,24 @@ public class FreeCell extends JFrame {
 	private void fezJogada() {
 		restauros.add(undoIndex, new PontoRestauro());
 		undoIndex++;
+		undo.setEnabled(true);
 	}
 	
 	private void fazerUndo() {
 		undoIndex--;
 		PontoRestauro ultimo = restauros.get(undoIndex);
-//		if(undoIndex = 0)
-//			desativarMenu();
+		if(undoIndex == 0)
+			desativarMenu();
 		ultimo.aplicarRestauro();
 		repaint();
 	}
-	
+
+	private void desativarMenu() {
+		undo.setEnabled(false);
+		
+	}
+
+
 	private class PontoRestauro{
 		private int clickMem;
 		private ContentorCartas origensMem[];
