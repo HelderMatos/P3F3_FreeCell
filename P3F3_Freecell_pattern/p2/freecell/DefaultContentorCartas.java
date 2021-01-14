@@ -94,8 +94,10 @@ public abstract class DefaultContentorCartas implements ContentorCartas {
 			DefaultContentorCartas novo = (DefaultContentorCartas)super.clone();
 			novo.asCartas = new Vector<Carta>();
 			for(Carta c : asCartas)
-				novo.asCartas.add(c);	
-			novo.topo = (Point)topo.clone();
+				novo.asCartas.add(c.clone());	
+			    //novo.asCartas.add(new Carta (c.getFace(), c.getNaipe));	// nao funciona mas temos o clone
+			novo.topo =  new Point(topo.x, topo.y); // se nao tivessemos metodo clone Funciona
+			//novo.topo = (Point)topo.clone();
 			return novo;
 		} catch (CloneNotSupportedException e) {
 			return null;
