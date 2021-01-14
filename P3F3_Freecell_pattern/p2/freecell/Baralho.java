@@ -61,8 +61,7 @@ public class Baralho {
 	public boolean temMais(){
 		return next < NUMCARTAS;			
 	}
-	
-	
+		
 	/** baralha as cartas presentes no baralho */
 	public void baralhar( ){
 		// se baralhou voltar tudo ao principio

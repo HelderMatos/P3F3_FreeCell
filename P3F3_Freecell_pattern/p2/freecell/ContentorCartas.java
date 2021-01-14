@@ -3,7 +3,7 @@ package p2.freecell;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public interface ContentorCartas {
+public interface ContentorCartas extends Cloneable{
 	
 	public boolean estaDentro( Point pt );
 	public boolean podeReceber( Carta c );	
@@ -21,5 +21,7 @@ public interface ContentorCartas {
 	public boolean getSeleccionado( );
 	
 	public void desenhar( Graphics g );
+	
+	public ContentorCartas clone();
 	
 }
