@@ -173,6 +173,7 @@ public class FreeCell extends JFrame {
 	private void reporSituacaoJogo() {
 		// repor aqui a situação de jogo
 		ultimoPonto.aplicarRestauro();
+		repaint();
 	}
 		
 	// método que vai colocar os menus que temos de implementar
@@ -206,7 +207,7 @@ public class FreeCell extends JFrame {
 		private ContentorCartas destinosMem[];
 		private ContentorCartas aOrigemMem;
 		
-		void PontoRestauro() {
+		PontoRestauro() {
 			this.clickMem = FreeCell.this.click;
 			
 			destinosMem = new ContentorCartas[destinos.length];
@@ -223,6 +224,23 @@ public class FreeCell extends JFrame {
 		}
 		
 		void aplicarRestauro() {
+//			destinos = destinosMem;// possivel se tivessemos so um ponto de restauro
+//			origens = origensMem;
+//			click = clickMem;
+//			aOrigem = aOrigemMem;
+			
+			click = clickMem;
+			
+			destinos = new ContentorCartas[destinosMem.length];
+			for(int i = 0; i< destinosMem.length; i++)
+				destinos[i] = destinosMem[i].clone();
+			
+			origens = new ContentorCartas[origensMem.length];
+			for(int i = 0; i< origensMem.length; i++) {
+				origens[i] = destinos[i].clone();
+				if(origensMem[i] == aOrigem)
+					aOrigem = origens[i];
+			}
 			
 		}
 		
