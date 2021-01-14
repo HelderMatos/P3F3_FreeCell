@@ -202,6 +202,14 @@ public class FreeCell extends JFrame {
 		private ContentorCartas destinos[];
 		private ContentorCartas aOrigem;
 		
+		void criarRestauro() {
+			
+		}
+		
+		void aplicarRestauro() {
+			
+		}
+		
 	}
 	
 	public static void main(String[] args) {
