@@ -24,6 +24,8 @@ public class FreeCell extends JFrame {
 	ContentorCartas destinos[] = new ContentorCartas[ NCOLUNAS + NCELULAS + NCASAS ];
 	private ContentorCartas aOrigem;
 
+	private PontoRestauro ultimoPonto;
+
 	public FreeCell( ){
 		setTitle( "Freecell" );
 		setSize( 680, 600 );
@@ -163,14 +165,16 @@ public class FreeCell extends JFrame {
 
 	private void memorizarSituacaoJogo() {
 		// memorizar aqui a situação de jogo
+		PontoRestauro ponto = new  PontoRestauro();
+		ultimoPonto = ponto;
 		repor.setEnabled(true);
 	}
 
 	private void reporSituacaoJogo() {
 		// repor aqui a situação de jogo
+		ultimoPonto.aplicarRestauro();
 	}
 		
-	
 	// método que vai colocar os menus que temos de implementar
 	private void colocarMenus(){
 		JMenuBar bar = new JMenuBar();
