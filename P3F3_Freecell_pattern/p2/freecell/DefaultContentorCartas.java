@@ -2,6 +2,7 @@ package p2.freecell;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public abstract class DefaultContentorCartas implements ContentorCartas {
@@ -86,5 +87,18 @@ public abstract class DefaultContentorCartas implements ContentorCartas {
 	
 	public void limpar() {
 		asCartas.clear();
+	}
+	
+	public DefaultContentorCartas clone() {
+		try {
+			DefaultContentorCartas novo = (DefaultContentorCartas)super.clone();
+			novo.asCartas = new Vector<Carta>();
+			for(Carta c : asCartas)
+				novo.asCartas.add(c);	
+			novo.topo = (Point)topo.clone();
+			return novo;
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
 	}
 }
