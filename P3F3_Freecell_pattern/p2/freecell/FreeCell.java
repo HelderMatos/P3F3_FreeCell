@@ -196,6 +196,13 @@ public class FreeCell extends JFrame {
 		setJMenuBar( bar );
 	}
 	
+	private class PontoRestauro{
+		private int click;
+		private ContentorCartas origens[];
+		private ContentorCartas destinos[];
+		private ContentorCartas aOrigem;
+		
+	}
 	
 	public static void main(String[] args) {
 		FreeCell frame = new FreeCell( );
