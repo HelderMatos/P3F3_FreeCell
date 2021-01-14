@@ -3,11 +3,21 @@ package p2.freecell;
 import java.awt.Point;
 
 public class Coluna extends DefaultContentorCartas {
+	
+	private String nome;
 
 	public Coluna( Point t, int comp, int alt ){
 		super( t, comp, alt );
 	}
 		
+	@Override
+	public DefaultContentorCartas clone() { // parte da deepcopy especifica.
+		Coluna col = (Coluna)super.clone();
+		col.nome = new String(nome);
+		return col;
+		
+	}
+	
 	public boolean podeReceber(Carta c) {
 		// se está vazio pode receber qualquer carta
 		if( estaVazio() )
