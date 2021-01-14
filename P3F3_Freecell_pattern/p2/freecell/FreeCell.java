@@ -2,6 +2,7 @@ package p2.freecell;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -120,6 +121,7 @@ public class FreeCell extends JFrame {
 		for( int i=0; i < destinos.length; i++){
 			if( destinos[ i ].estaDentro( pt ) ){
 				if( destinos[ i ].podeReceber( c ) ){
+					fezJogada();
 					destinos[ i ].receber( aOrigem.retirar() );
 					break;
 				}							
@@ -128,7 +130,8 @@ public class FreeCell extends JFrame {
 		
 		repaint();		
 	}
-	
+
+
 	private void testarFim() {
 		if( ganhou() )
 			JOptionPane.showMessageDialog( this, "Parabéns! Ganhou!",
@@ -196,9 +199,30 @@ public class FreeCell extends JFrame {
 			}
 		});
 		menu.add( repor );
+		
+		JMenuItem undo = new JMenuItem("Desefazer ultima Jogada");
+		undo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				fazerUndo();	
+			}
+		});
+		menu.add( undo );
+		
 		bar.add( menu );
 		
 		setJMenuBar( bar );
+	}
+	
+	private ArrayList<PontoRestauro> restauros = new ArrayList<PontoRestauro>();
+	
+	private void fezJogada() {
+		restauros.add(new PontoRestauro());
+	}
+	
+	private void fazerUndo() {
+		PontoRestauro ultimo = restauros.get(restauros.size() -1);
+		ultimo.aplicarRestauro();
+		repaint();
 	}
 	
 	private class PontoRestauro{
